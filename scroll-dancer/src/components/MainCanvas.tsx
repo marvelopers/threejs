@@ -1,11 +1,16 @@
-import { Box } from "@react-three/drei";
+import { Box, OrbitControls, ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import * as THREE from "three";
 import { colors } from "../constants/colors";
+import { Dancer } from "./Dancer";
+import { Loader } from "./Loader";
+import { useStore } from "../stores";
 
 export const MainCanvas = () => {
+  const { isEntered } = useStore();
+
   const aspectRatio = window.innerWidth / window.innerHeight;
   return (
     <Canvas
@@ -21,7 +26,12 @@ export const MainCanvas = () => {
       }}
       scene={{ background: new THREE.Color(colors.black) }}
     >
-      <Box material-color={colors.red}></Box>
+      <ScrollControls pages={isEntered ? 8 : 0} damping={0.25}>
+        <Suspense fallback={<Loader isCompleted={false} />}>
+          <Dancer />
+        </Suspense>
+      </ScrollControls>
+      <OrbitControls />
     </Canvas>
   );
 };
