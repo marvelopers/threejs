@@ -27,9 +27,9 @@ export const Stage = () => {
       <Circle
         castShadow
         receiveShadow
-        args={[8, 32, 32]}
+        args={[8, 8, 8]}
         rotation-x={-Math.PI / 2}
-        position-y={-4.4}
+        position-y={-Math.PI / 2}
       >
         <meshStandardMaterial
           color={colors.midnightBlue}

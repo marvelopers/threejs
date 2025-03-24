@@ -209,20 +209,6 @@ export const Dancer = () => {
     };
   }, [isEntered, three.camera, three.scene]);
 
-  useEffect(() => {
-    if (!isEntered) return;
-    if (!dancerRef.current) return;
-    timeline = gsap.timeline();
-    timeline.from(
-      dancerRef.current?.rotation,
-      {
-        duration: 4,
-        y: Math.PI,
-      },
-      0.5
-    );
-  }, [isEntered]);
-
   if (!isEntered) return <Loader isCompleted />;
 
   return (
