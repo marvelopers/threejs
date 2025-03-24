@@ -7,6 +7,7 @@ import { colors } from "../constants/colors";
 import { Dancer } from "./Dancer";
 import { Loader } from "./Loader";
 import { useStore } from "../stores";
+import { MovingDOM } from "../dom/MovingDOM";
 
 export const MainCanvas = () => {
   const { isEntered } = useStore();
@@ -28,6 +29,7 @@ export const MainCanvas = () => {
     >
       <ScrollControls pages={isEntered ? 8 : 0} damping={0.25}>
         <Suspense fallback={<Loader isCompleted={false} />}>
+          <MovingDOM />
           <Dancer />
         </Suspense>
       </ScrollControls>
